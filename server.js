@@ -16,6 +16,12 @@ var multer = require('multer');
 var md5 = require('js-md5');
 var async = require('async'); 
 
+var db_details = require('./DBDetails.js'); 
+var dbd_host = db_details.host_get(); 
+var dbd_user = db_details.user_get(); 
+var dbd_passw = db_details.password_get(); 
+var dbd_db = db_details.db_get(); 
+
 var photoName = ""; 
 var memPhotoName = ""; 
 var passedValidation = false; 
@@ -70,6 +76,14 @@ var storage_photo = multer.diskStorage({
     }
 });
 
+app.get('/testdb', function(req, res) {
+    var host = db_details.host_get(); 
+    console.log(host); 
+    console.log(db_details.user);
+    console.log(db_details.password);
+    console.log(db_details.db);;
+});
+
 app.get('/gall', function(req, res) {
 
     res.render('play-gall.ejs'); 
@@ -92,10 +106,14 @@ app.get('/uploadProfilePic', function(req, res) {
 
     // create connection
     var conn = mysql.createConnection({
-        host: 'localhost',
+     /* host: 'localhost',
         user: 'connor',
         password: '10Superstar',
-        database: 'MyDb2'
+        database: 'MyDb2' */ 
+        host: dbd_host,
+        user: dbd_user,
+        password: dbd_passw,
+        database: dbd_db
     }); 
 
     // check connection 
@@ -135,10 +153,14 @@ app.post('/api/profilePhoto', function(req,res) {
         }
         
         var conn = mysql.createConnection({
-            host : 'localhost',
+        /*  host : 'localhost',
             user : 'connor',
             password : '10Superstar',
-            database : 'MyDB2'
+            database : 'MyDB2' */
+            host: dbd_host,
+            user: dbd_user,
+            password: dbd_passw,
+            database: dbd_db
         }); 
         
         var photoPath = "uploads/" + photoName; 
@@ -175,10 +197,14 @@ app.post('/api/addPhoto', function(req,res) {
 
        // create connection
        var conn = mysql.createConnection({
-           host : 'localhost',
+        /*   host : 'localhost',
            user : 'connor',
            password : '10Superstar',
-           database : 'MyDB2' 
+           database : 'MyDB2' */ 
+            host: dbd_host,
+            user: dbd_user,
+            password: dbd_passw,
+            database: dbd_db
        }); 
 
        // check connection 
@@ -216,10 +242,6 @@ app.post('/api/addPhoto', function(req,res) {
 
 app.post('/api/addMem', function(req, res, next) {
 
- /*   var mem = req.body.nameMem;
-    console.log("recieved add memory request ", req.body);  
-    console.log(mem);  */
-
     var queryData = ""; 
     var postData = ""; 
     var mem = ""; 
@@ -233,10 +255,14 @@ app.post('/api/addMem', function(req, res, next) {
 
            // connect to database 
     var conn = mysql.createConnection({
-        host : 'localhost',
+       /* host : 'localhost',
         user : 'connor',
         password : '10Superstar',
-        database : 'MyDB2'
+        database : 'MyDB2' */ 
+        host: dbd_host,
+        user: dbd_user,
+        password: dbd_passw,
+        database: dbd_db
     });
 
     mem = postData.mem; 
@@ -288,10 +314,14 @@ function CollectMemories(callback) {
 
         // connect
         var conn = mysql.createConnection({
-            host : 'localhost',
+            /* host : 'localhost',
             user : 'connor',
             password : '10Superstar',
-            database : 'MyDB2'
+            database : 'MyDB2' */ 
+            host: dbd_host,
+            user: dbd_user,
+            password: dbd_passw,
+            database: dbd_db
         });
 
         // check connection 
@@ -311,15 +341,12 @@ function CollectMemories(callback) {
                 console.log("email query error"); 
                 res.send("error obtaining data"); 
             } else {
-            //    console.log("obtained data -->"); 
                 memories = [];
                 for ( var i=0; i<result.length; i++ ) {
                     memories.push(result[i].Memory); 
                 } // for -> END 
 
                 if ( i == result.length ) {
-                    // ready to load profile now
-                //    console.log("loop complete"); 
                     callback(null); 
                 }
             }
@@ -332,10 +359,14 @@ function CollectPhotos(req, res, callback) {
 
   //connect to db 
     var conn = mysql.createConnection({
-        host : 'localhost',
+        /* host : 'localhost',
         user : 'connor',
         password : '10Superstar',
-        database : 'MyDB2'
+        database : 'MyDB2' */
+        host: dbd_host,
+        user: dbd_user,
+        password: dbd_passw,
+        database: dbd_db
     });
 
     // check connection 
@@ -393,8 +424,7 @@ app.get('/', function(req,res) {
    } else {
        loginError = false; 
        serve_login('login.html',res);
-   }
-    
+   }  
 });
 
 
@@ -411,10 +441,14 @@ app.get('/profile', function(req, res) {
     var profilePicPath = ""; 
     
     var conn = mysql.createConnection({
-        host : 'localhost',
+        /* host : 'localhost',
         user : 'connor',
         password : '10Superstar',
-        database : 'MyDB2'
+        database : 'MyDB2' */ 
+        host: dbd_host,
+        user: dbd_user,
+        password: dbd_passw,
+        database: dbd_db
     });
     
     var sqlQuery = "SELECT * FROM Accounts WHERE Email = " + "'" + localStorage.getItem('EmailLoggedIn') + "'"; 
@@ -556,10 +590,14 @@ function validate_login(req, res) {
         postData = qs.parse(queryData); 
 
     var connection = mysql.createConnection({
-    host : 'localhost',
+    /* host : 'localhost',
     user : 'connor',
     password : '10Superstar',
-    database : 'MyDB2'
+    database : 'MyDB2' */
+    host: dbd_host,
+    user: dbd_user,
+    password: dbd_passw,
+    database: dbd_db
     });
     
     connection.connect(function(err) {
@@ -627,19 +665,6 @@ app.get('/createAccount', function(req,res) {
         _passwError : ca_passwError,
         _passwConfirmError : ca_passwConfirmError
     }); 
-
-  /*  var file = "createAccount.html"; 
-    fs.readFile(file, function(err, data) {
-        data = data.toString('utf8'); 
-        data = data.replace('{{_fnameError}}', ca_fnameError); 
-        data = data.replace('{{_lnameError}}', ca_lnameError); 
-        data = data.replace('{{_emailError}}', ca_emailError);
-        data = data.replace('{{_passwError}}', ca_passwError); 
-        data = data.replace('{{_passwConfirmError}}', ca_passwConfirmError); 
-        res.writeHead(200, {'Content-type': 'text/html'}); 
-        res.write(data);
-        res.end();
-    }); */
 });
 
 
@@ -698,10 +723,14 @@ app.post('/createAccCheck', function(req,res) {
             
                     // connect
                     var connection = mysql.createConnection({
-                        host : 'localhost',
+                        /* host : 'localhost',
                         user : 'connor',
                         password : '10Superstar',
-                        database : 'MyDB2' 
+                        database : 'MyDB2' */ 
+                        host: dbd_host,
+                        user: dbd_user,
+                        password: dbd_password,
+                        database: dbd_db
                     });
                 
                     // check connection
@@ -818,4 +847,4 @@ app.on('listening', function() {
 });
 
 app.listen(8080, "0.0.0.0"); 
-console.log("app listening on port 8080"); 
+console.log('app listening at http://localhost:8080'); 
