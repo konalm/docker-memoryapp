@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Upload Profile Picture </title> 
+</head>
+
+<body>
+    <h3> Upload New Profile Picture </h3> 
+    <br>
+
+    <img src="<%=_profilePicPath%>" width="300px" height="300px" />
+    <br> <br>
+    <form id="uploadPP" enctype="multipart/form-data" action="/api/profilePhoto" placeholder="boo" method="post"> 
+    <input type="file" name="profilePic"  width="300px">
+    <input type="submit" value="Upload Profile Pic" name="submit"> 
+    </form> 
+
+</body>
+
+</html> 

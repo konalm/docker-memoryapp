@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<title> Create New Memory </title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<h3> Create New Memory </h3>
+
+<!-- <input type="text" name="mem" placeholder="Name of Memory" ng-model="data.nameMem">
+<input type="submit" value="Create" name="createMem" ng-click="createMem()"> 
+-->
+
+<form action="/api/addMem" method="POST">
+<input type="text" name="mem" placeholder="Name of Memory"> 
+<input type="submit" value="Create">
+</form> 
+
+
+</body>
+</html> 
+
+
+<script>
+
+var app = angular.module('myApp', []); 
+
+app.controller('myCtrl', function($scope, $http) {
+$scope.data = {}; 
+
+$scope.createMem = function() {
+    console.log("clicked on create"); 
+
+    $http({
+        method: 'POST',
+        url: '/api/addMem',
+        data: $scope.data
+    }).then(function (httpResponse) {
+        console.log('response ', httpResponse); 
+    });  
+
+} // create Mem -> END
+
+}); 
+
+</script>

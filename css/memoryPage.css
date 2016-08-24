@@ -1,0 +1,54 @@
+
+body {
+    background-color: rgb(240,240,245); 
+}
+
+#header {
+    float: left;
+}
+
+#home {
+    float: right; 
+    border: 0px solid red; 
+    height: auto;
+    margin-right: 200px;
+    margin-top: 20px;
+}
+
+#home input[type=submit] {
+    border: 1px solid grey;
+    background-color: white;
+    height: 25px;
+    width: 75px;
+}
+
+#holder {
+    width:850px;
+    border: 0px solid green;
+    height: auto;
+    display: inline-block;
+    padding: 10px;
+    margin: 0 auto;
+    margin-left: 100px;
+    background-color: white;
+    box-shadow: 0px 3px 5px rgb(220,220,220);
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+#holder ul {
+    list-style: none;
+    list-style-type: none;
+}
+
+#holder li {
+    display: inline-block; 
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+#imageGall {
+    margin-top:50px;
+    float:left;
+    height:auto;
+}
+

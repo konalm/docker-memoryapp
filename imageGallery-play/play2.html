@@ -1,0 +1,101 @@
+
+<html>
+<head> 
+<style type="text/css"> 
+
+#container {
+    margin: 100px auto;
+    padding: 10px; 
+    width: 700px; 
+    border: 1px solid #ccc; 
+}
+
+#slider {
+    display: block; 
+    width: 100%;
+    height: 300px; 
+    padding: 0; 
+    margin: 0 0 10px; 
+    overflow: hidden; 
+}
+
+#prev, #next {
+    bottom: 0;
+    display: block;
+    width: 120px;
+    background-color: grey;
+    padding: 5px;
+    border: none; 
+    font-size: 17px; 
+    color: #fff; 
+}
+
+#prev {
+    float: left;
+}
+
+#next {
+    float: right; 
+}
+
+</style> 
+        
+<script src="//code.jquery.com/jquery-1.11.0.min.js"> </script>
+
+<script>
+
+    var $first = $('li:first', 'ul');
+    var $last = $('li:last', 'ul'); 
+
+    $("#next").click(function () {
+        console.log("clicked on next"); 
+        var $next,
+            $selected = $(".selected"); 
+        // get the selected item
+        // if next li is empty, get the first 
+        $next = $selected.next('li').length ? $selected.next('li') : $first; 
+        $selected.removeClass("selected").fadeOut('fast');
+        $next.addClass('selected').fadeIn('fast'); 
+    });
+
+    $("#prev").click(function() {
+        var $prev,
+            $selected = $(".selected"); 
+
+        // get the selected item 
+        // if prev li is empty, get the last
+        $prev = $selected.prev('li').length ? $selected.prev('li') : $last; 
+        $selected.removeClass("selected").fadeOut('fast'); 
+        $prev.addClass("selected").fadeIn('fast'); 
+    }); 
+
+    </script> 
+
+</head>
+
+<body>
+
+<div id="container"> 
+    <ul id="slider">
+        <li class="slide selected"> 
+            <img src="img/img-1.jpg" width="700" height="300" alt="" /> 
+        </li> 
+
+        <li class="slide">
+            <img src="img/img-2.jpg" width="700" height="300" alt="" />
+        </li> 
+
+        <li class="slide">
+            <img src="img/img-3.jpg" width="700" height="300" alt="" /> 
+        </li> 
+
+    </ul>
+
+    <button id="prev"> Previous </button>
+    <button id="next"> Next </button> 
+    <div style="clear:both"> </div> 
+
+</div> 
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+
+body{
+    background-color: rgb(240,240,245); 
+}
+
+#upperBar {
+    width: 90%;
+    border-bottom: 1px solid rgb(60,60,75); 
+    height: 40px;
+    margin-bottom:20px;
+    float: right;
+    margin-right: 20px;
+}
+
+#profilePic {
+    margin-left: 20px;
+    margin-top:10px;
+    float: left;
+    border: 0px solid yellow;
+}
+
+#upperBarBox {
+    float: right;
+    border: 0px solid green; 
+    margin-right:20px;
+}
+
+#logout {
+    float: right;
+    border: 0px solid green; 
+}
+
+#upperBarBox input[type=submit] {
+    border: 1px solid grey;
+    background-color: white;
+    height: 25px;
+}
+
+#name {
+    float: right;
+    border: 0px solid red; 
+    text-align: center;
+    font-size: 30px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: rgb(70,70,80);
+    margin-right:40px;
+}
+
+#holder {
+    width: 750px;
+    height: auto;
+    float: left;
+    border:0px solid blue;
+  /*  position: fixed;
+    top: 40%;
+    left: 50%;  
+    transform: translate(-50%, -50%); */
+    background-color: white;
+    padding:0px;
+    box-shadow: 0px 3px 5px rgb(220,220,220);
+    margin-left:200px;
+}
+
+#holderUpper {
+    float: left;  
+    border: 0px solid olive;
+    width: 100%; 
+    padding: 15px;
+}
+
+#holderLower {
+    float: left; 
+    border: 0px solid purple;
+    width: 100%;
+    margin-top: 20px;
+    padding:15px;
+}
+
+#createMemHolder {
+     border: 2px solid rgb(70,100,230);
+    float: right;
+   /* width: 75px;
+    height: 75px; */ 
+    padding: 7px;
+    margin-right:70px;
+    box-shadow: 0px 5px 7px rgb(180,180,180); 
+}
+
+#nameMemForm {
+    display:none;
+    text-align:center;
+}
+
+#memory {
+    width: 80%; 
+    margin-bottom: 20px;
+    border: 1px dashed rgb(150,150,165); 
+    padding: 15px;
+}
+
+#memory a {
+    text-decoration: none;
+    color: rgb(30,45,120); 
+    font-size: 25px;
+}
+
+#memory input[type=submit] {
+    border: 1px solid grey;
+    background-color: white;
+    height: 25px;
+    margin-left: 20px;
+}

@@ -1,0 +1,73 @@
+<html>
+<head>
+<title> Memory </title>
+
+<link rel="stylesheet" type="text/css" href="../css/memoryPage.css"> 
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Merriweather:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<!-- <link rel="stylesheet" href="../demo/normalize.css">-->
+<!-- <link rel="stylesheet" href="../demo/bagpakk.min.css"> -->
+<link rel="stylesheet" href="../demo/style.css"> 
+<link rel="stylesheet" href="../src/css/swipebox.css">
+
+</head>
+
+<body>
+
+ <div id="holder">
+
+<div id="header">
+<h2> <%= _memory %> </h2> 
+</div>
+
+<div id="home">
+   <input type="submit" value="home" name="home"
+         onclick="window.location='../profile'">
+</div>
+
+<br>
+<br>
+<br>
+
+<div id="imageGall">
+<div id="try"></div> 
+<ul>
+<% for (var i=0; i<_photos.length; i++) { %> 
+    <li class="box">
+    <a href="../uploads/<%=_photos[i]%>" class="swipebox" title="">
+    <img src="../uploads/<%=_photos[i]%>" alt="image"> 
+    </a> 
+    </li> 
+  <!-- </div>  -->
+<% } %> 
+</ul> 
+</div>
+
+
+</div>
+
+<script src="../lib/ios-orientationchange-fix.js"></script>
+<script src="../lib/jquery-2.1.0.min.js"></script>
+<script src="../src/js/jquery.swipebox.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    /* Basic Gallery */
+    $( '.swipebox' ).swipebox();
+    
+    /* Video */
+    $( '.swipebox-video' ).swipebox();
+
+    /* Dynamic Gallery */
+    $( '#gallery' ).click( function( e ) {
+      e.preventDefault();
+      $.swipebox( [
+        { href : 'http://swipebox.csag.co/mages/image-1.jpg', title : 'My Caption' },
+        { href : 'http://swipebox.csag.co/images/image-2.jpg', title : 'My Second Caption' }
+      ] );
+    } );
+
+});
+</script>
+
+</body>
+</html> 
